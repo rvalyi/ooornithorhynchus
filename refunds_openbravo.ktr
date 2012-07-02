@@ -70,13 +70,13 @@
   </notepads>
   <connection>
     <name>MySql</name>
-    <server>192.168.1.184</server>
+    <server>192.168.1.50</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>openbravopos</database>
     <port>3306</port>
-    <username>posuser</username>
-    <password>PASSWORD</password>
+    <username>root</username>
+    <password>MYSQL_PASSWORD</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -109,7 +109,10 @@
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;midwestsupplies&quot;, :username =&gt; &apos;kettle&apos;, :password =&gt; &apos;PASSWORD&apos;})
+#old parameters
+#Ooor.new({:url =&gt; &apos;http:&#47;&#47;localhost:8069&#47;xmlrpc&apos;, :database =&gt; &apos;AUTO_REP_db_erp&apos;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
+
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
 
@@ -322,7 +325,11 @@ group by TICKETLINES.product</sql>
 	<scripts>
 		<script>
 			<title>Ruby Script</title>
-			<body>cash_refund()</body>
+			<body>require File.join([$step.plugin_dir, &quot;compiled_files&quot;, &quot;cashrefund&quot;])
+
+{
+	&quot;output&quot; =&gt; Refunds::execute
+}</body>
 			<role>ROW_SCRIPT</role>
 		</script>
 		<script>
@@ -330,7 +337,9 @@ group by TICKETLINES.product</sql>
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;midwestsupplies&quot;, :username =&gt; &apos;kettle&apos;, :password =&gt; &apos;PASSWORD&apos;})
+#old parameters
+#Ooor.new({:url =&gt; &apos;http:&#47;&#47;localhost:8069&#47;xmlrpc&apos;, :database =&gt; &apos;AUTO_REP_db_erp&apos;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
 
@@ -343,71 +352,6 @@ $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyl
 $last_refund_id = false
 $last_refund = []
 $search = []
-
-
-def cash_refund
-  if $row[&quot;product&quot;]
-  if $row[&quot;ticketid&quot;] == $last_refund_id
-    $last_refund += [{&apos;product&apos; =&gt; $row[&quot;reference&quot;], &apos;qty&apos; =&gt; $row[&quot;sum(units)&quot;]}]
-  else 
-    if $last_refund_id
-      $last_refund.each do |line|
-        $search += [[&apos;order_line.product_id.default_code&apos;, &apos;=&apos;, line[&apos;product&apos;]]]
-      end
-      list = SaleOrder.search($search)
-      if list == []
-        puts &quot;**********&quot; *44
-        puts &quot;error, no matching sale order&quot;
-        puts &quot;**********&quot; *44
-      else
-        i = 0
-        match = false
-        while not match and i &lt; list.length
-          so = SaleOrder.find(list[i])
-          so_lines = so.order_line
-          if $last_refund.length == so_lines.length
-            so_dic = {}
-            so_lines.each do |order_line|
-              so_dic[order_line.product_id.default_code] = order_line.product_uom_qty
-            end
-            lr_dic = {}
-            $last_refund.each do |order_line|
-              lr_dic[order_line[&apos;product&apos;]] = - order_line[&apos;qty&apos;]
-            end
-            if so_dic == lr_dic #BINGO
-              match = true
-            end
-          end
-          i += 1
-        end
-          if match
-            #TODO make the delete as the so is found
-                  invoice = AccountInvoice.find(:first, :domain =&gt; [[&apos;origin&apos;, &apos;=&apos;, so.name]])
-                  ref = AccountInvoiceRefund.new({&apos;filter_refund&apos; =&gt; &apos;refund&apos;, &apos;description&apos; =&gt; &quot;IS_%09d&quot; %$last_refund_id}, false, {&apos;active_ids&apos; =&gt; [invoice.id], &apos;type&apos; =&gt; &apos;out_invoice&apos;, &apos;active_id&apos; =&gt; invoice.id})
-                  ref.save
-                  ref.invoice_refund
-
-                  picking = StockPicking.find(:first, :domain =&gt; [[&apos;origin&apos;, &apos;=&apos;, so.name]])
-                  begin
-                      StockPicking.write([picking.id], {&apos;state&apos; =&gt; &apos;draft&apos;})
-                      picking.destroy
-                  rescue
-                  end
-          else
-            puts &quot;**********&quot; *44
-            puts &quot;error, no matching sale order&quot;
-            puts &quot;**********&quot; *44
-          end
-        end
-    end
-    $search = [[&apos;amount_total&apos;, &apos;=&apos;, - $row[&quot;total&quot;]], [&apos;shipped&apos;, &apos;=&apos;, true]]
-    $last_refund_id = $row[&quot;ticketid&quot;]
-    $last_refund = [{&apos;product&apos; =&gt; $row[&quot;reference&quot;], &apos;qty&apos; =&gt; $row[&quot;sum(units)&quot;]}]
-  end
-
-
-  end
-end
 </body>
 			<role>INIT_SCRIPT</role>
 		</script>
@@ -478,7 +422,11 @@ end
 	<scripts>
 		<script>
 			<title>Ruby Script</title>
-			<body>card_refund()</body>
+			<body>require File.join([$step.plugin_dir, &quot;compiled_files&quot;, &quot;magcardrefund&quot;])
+
+{
+	&quot;output&quot; =&gt; Refunds::execute
+}</body>
 			<role>ROW_SCRIPT</role>
 		</script>
 		<script>
@@ -486,7 +434,9 @@ end
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;midwestsupplies&quot;, :username =&gt; &apos;kettle&apos;, :password =&gt; &apos;PASSWORD&apos;})
+#old parameters
+#Ooor.new({:url =&gt; &apos;http:&#47;&#47;localhost:8069&#47;xmlrpc&apos;, :database =&gt; &apos;AUTO_REP_db_erp&apos;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
 
@@ -495,32 +445,7 @@ $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyl
 #$excep_wrong_line_id = SaleException.find(&quot;excep_wrong_line&quot;).id
 
 #sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &quot;REPLACE_shop_name&quot;]])[0]
-
-
-def card_refund
-    sale_order = SaleOrder.find(:first, :domain =&gt; [[&apos;name&apos;, &apos;=&apos;, &quot;IS_%09d&quot; %$row[&quot;ticketid_1&quot;]]])
-    if sale_order
-      puts &quot;Sale Order&quot;, sale_order.id
-      invoice = AccountInvoice.find(:first, :domain =&gt; [[&apos;origin&apos;, &apos;=&apos;, &quot;IS_%09d&quot; %$row[&quot;ticketid_1&quot;]]])
-      puts &quot;invoice&quot;, invoice.id
-      ref = AccountInvoiceRefund.new({&apos;filter_refund&apos; =&gt; &apos;refund&apos;, &apos;description&apos; =&gt; &quot;IS_%09d&quot; %$row[&quot;ticketid&quot;]}, false, {&apos;active_ids&apos; =&gt; [invoice.id], &apos;type&apos; =&gt; &apos;out_invoice&apos;, &apos;active_id&apos; =&gt; invoice.id})
-      ref.save
-      ref.invoice_refund
-      puts &quot;refund&quot;, ref.id
-
-      picking = StockPicking.find(:first, :domain =&gt; [[&apos;origin&apos;, &apos;=&apos;, &quot;IS_%09d&quot; %$row[&quot;ticketid_1&quot;]]])
-      puts &quot;picking&quot;, picking.id
-      begin
-        StockPicking.write([picking.id], {&apos;state&apos; =&gt; &apos;draft&apos;})
-        picking.destroy
-      rescue
-      end
-    else
-      puts &quot;********************&quot; * 88
-      puts &quot;sale_order not imported yet&quot;
-      puts &quot;********************&quot; * 88
-    end
-end</body>
+</body>
 			<role>INIT_SCRIPT</role>
 		</script>
 	</scripts>

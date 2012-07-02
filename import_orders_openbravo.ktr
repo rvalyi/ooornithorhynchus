@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>exportproduct</name>
+    <name>transfo_kyle_import_order</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -9,6 +9,31 @@
     <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
+        <parameter>
+            <name>oerp_db</name>
+            <default_value>oerp_db</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_host</name>
+            <default_value>oerp_host</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_port</name>
+            <default_value>oerp_port</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_pwd</name>
+            <default_value>oerp_pwd</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_user</name>
+            <default_value>oerp_user</default_value>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -62,21 +87,21 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011&#47;03&#47;31 17:12:38.022</created_date>
+  <created_date>2011&#47;03&#47;16 17:04:46.320</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;03&#47;31 17:12:38.022</modified_date>
+  <modified_date>2011&#47;03&#47;16 17:04:46.320</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>MySql</name>
-    <server>192.168.1.184</server>
+    <name>mysql</name>
+    <server>192.168.1.53</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>openbravopos</database>
     <port>3306</port>
     <username>posuser</username>
-    <password>PASSWORD</password>
+    <password>MYSQL_PASSWORD</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -88,40 +113,15 @@
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>rrr</name>
-    <server>192.168.1.50</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>openbravopos</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>PASSWORD</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>exportproduct</to><enabled>Y</enabled> </hop>  <hop> <from>exportproduct</from><to>Database join 4</to><enabled>N</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2</from><to>Ruby Scripting 2</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting 2</from><to>create</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4</from><to>Database join 4 2</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4 2</from><to>status_is_ok</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>update</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>output</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2 2</from><to>Ruby Scripting</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>status_is_ok 2</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Database join</from><to>Database join 2</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 2</from><to>create sale order</to><enabled>Y</enabled> </hop>  <hop> <from>Get last imported order</from><to>Table input</to><enabled>Y</enabled> </hop>  <hop> <from>Table input</from><to>Database join</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Database join 4</name>
+    <name>Database join</name>
     <type>DBJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -130,40 +130,27 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySql</connection>
+    <connection>mysql</connection>
     <rowlimit>0</rowlimit>
-    <sql>select id from PRODUCTS where reference = ? or name = ? or code = ? or id = ?;
-</sql>
-    <outer_join>Y</outer_join>
+    <sql>select * from TICKETLINES where ticket = ?</sql>
+    <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>default_code</name>
-        <type>-</type>
-      </field>
-      <field>
-        <name>name1</name>
-        <type>-</type>
-      </field>
-      <field>
-        <name>barcode</name>
-        <type>-</type>
-      </field>
-      <field>
-        <name>oe_id</name>
-        <type>-</type>
+        <name>id</name>
+        <type>String</type>
       </field>
     </parameter>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>260</xloc>
+      <xloc>400</xloc>
       <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Database join 4 2</name>
+    <name>Database join 2</name>
     <type>DBJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -172,92 +159,27 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySql</connection>
+    <connection>mysql</connection>
     <rowlimit>0</rowlimit>
-    <sql>select id from PRODUCTS where name = ? or code = ?;
-</sql>
-    <outer_join>Y</outer_join>
+    <sql>select reference, name, code, pricesell from PRODUCTS where id = ?</sql>
+    <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>name1</name>
-        <type>-</type>
-      </field>
-      <field>
-        <name>default_code</name>
-        <type>-</type>
+        <name>PRODUCT</name>
+        <type>String</type>
       </field>
     </parameter>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
+      <xloc>550</xloc>
       <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Replace in string 2</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>name</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>fghj</replace_string>
-        <replace_by_string>\\&quot;</replace_by_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>530</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Replace in string 2 2</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>name</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>hkj</replace_string>
-        <replace_by_string>\\&quot;</replace_by_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>530</xloc>
-      <yloc>90</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ruby Scripting</name>
+    <name>Get last imported order</name>
     <type>TypeExitRubyStep</type>
     <description/>
     <distribute>Y</distribute>
@@ -269,29 +191,26 @@
 	<scripts>
 		<script>
 			<title>Ruby Script</title>
-			<body># your script goes here 
-if  $row[&quot;id_1&quot;] == $row[&quot;id_2&quot;] or $row[&quot;id_2&quot;] == false or $row[&quot;id_2&quot;] == nil or $row[&quot;id_2&quot;] == &quot;&quot;
-	$row[&quot;erro&quot;] = 0
-#	puts &apos;ok&apos;, $row[&quot;default_code&quot;], $row[&quot;id_1&quot;]
-else
-	$row[&quot;erro&quot;] = 1
-#	puts &apos;error&apos;, $row[&quot;default_code&quot;], $row[&quot;id_1&quot;], $row[&quot;id_2&quot;]
-	$list_errors += [$row[&quot;default_code&quot;]]
-end
+			<body>require &quot;rubygems&quot;
+require &quot;ooor&quot;
+#old parameter
+#o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;&quot;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
-[$row]</body>
+$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
+
+last_imported_order_id = SaleOrder.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;IS_&apos;]], 0, 1, &apos;desc&apos;)
+#last_imported_order_id = SaleOrder.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;IS_&apos;]]).sort.last
+puts last_imported_order_id
+if last_imported_order_id != []
+	num = SaleOrder.find(last_imported_order_id[0]).name.split(&quot;_&quot;)[1].to_i
+else
+	num = 0
+end
+puts &quot;num&quot;, num
+
+{&quot;num&quot; =&gt; num}</body>
 			<role>ROW_SCRIPT</role>
-		</script>
-		<script>
-			<title>New Script</title>
-			<body>$list_errors = []</body>
-			<role>INIT_SCRIPT</role>
-		</script>
-		<script>
-			<title>New Script 1</title>
-			<body>puts &apos;**************&apos; * 88, &apos;Errors between erp and pos&apos;
-puts $list_errors</body>
-			<role>DISPOSE_SCRIPT</role>
 		</script>
 	</scripts>
 	<rubyVersion>RUBY_1_8</rubyVersion>
@@ -299,7 +218,7 @@ puts $list_errors</body>
 
 	<outputFields>
 		<outputField>
-			<name>erro</name>
+			<name>num</name>
 			<type>5</type>
 			<update>N</update>
 		</outputField>
@@ -313,87 +232,8 @@ puts $list_errors</body>
 	<gemHome/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>610</xloc>
-      <yloc>90</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ruby Scripting 2</name>
-    <type>TypeExitRubyStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-	<scripts>
-		<script>
-			<title>Ruby Script</title>
-			<body># your script goes here 
-if $row[&quot;default_code&quot;] and $row[&quot;default_code&quot;] != &quot;false&quot;
-[$row]
-else
-[]
-end</body>
-			<role>ROW_SCRIPT</role>
-		</script>
-	</scripts>
-	<rubyVersion>RUBY_1_8</rubyVersion>
-	<clearInputFields>N</clearInputFields>
-
-	<outputFields>
-	</outputFields>
-	<rubyVariables>
-	</rubyVariables>
-	<infoSteps>
-	</infoSteps>
-	<targetSteps>
-	</targetSteps>
-	<gemHome/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>610</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>%%java.io.tmpdir%%</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>name</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>erro</name>
-        <ascending>N</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>700</xloc>
-      <yloc>90</yloc>
+      <xloc>100</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -408,89 +248,29 @@ end</body>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySql</connection>
-    <sql>select CATEGORIES.id as id, TAXCATEGORIES.id as tax_id from CATEGORIES, TAXCATEGORIES where CATEGORIES.name = &apos;New Products to Organize&apos; and TAXCATEGORIES.name = &apos;Brew TAX @&apos;;</sql>
+    <connection>mysql</connection>
+    <sql>select TICKETS.id, datenew, ticketid, tickettype, payment 
+from RECEIPTS, TICKETS, PAYMENTS 
+where ticketid &gt; ? and tickettype = 0 and TICKETS.id = RECEIPTS.id and PAYMENTS.receipt = RECEIPTS.id and datenew &gt; &quot;2011-03-01&quot;
+order by ticketid;</sql>
     <limit>0</limit>
-    <lookup/>
+    <lookup>Get last imported order</lookup>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>60</xloc>
+      <xloc>250</xloc>
       <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <count_rows>N</count_rows>
-      <count_field/>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description/>
-    <fields>      <field>        <name>name</name>
-        <case_insensitive>N</case_insensitive>
-        </field>      </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>770</xloc>
-      <yloc>90</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>create</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MySql</connection>
-    <execute_each_row>Y</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <sql>insert into PRODUCTS (id, reference, code, name, pricebuy, pricesell, category, taxcat, product_type) 
-values (&apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &quot;?&quot;, &apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &apos;?&apos;)</sql>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-       <argument><name>oe_id</name></argument>
-       <argument><name>default_code</name></argument>
-       <argument><name>barcode</name></argument>
-       <argument><name>name</name></argument>
-       <argument><name>standard_price</name></argument>
-       <argument><name>list_price</name></argument>
-       <argument><name>pos_categ_id</name></argument>
-       <argument><name>pos_tax_id</name></argument>
-       <argument><name>type</name></argument>
-    </arguments>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>700</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>exportproduct</name>
+    <name>create sale order</name>
     <type>TypeExitRubyStep</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -499,8 +279,8 @@ values (&apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &quot;?&quot;, &apos;?&apos
 	<scripts>
 		<script>
 			<title>Ruby Script</title>
-			<body>do_export()
-</body>
+			<body>do_import()
+nil</body>
 			<role>ROW_SCRIPT</role>
 		</script>
 		<script>
@@ -508,147 +288,130 @@ values (&apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &quot;?&quot;, &apos;?&apos
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;midwestsupplies&quot;, :username =&gt; &apos;kettle&apos;, :password =&gt; &apos;PASSWORD&apos;})
+#old parameters
+#o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;&quot;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
+$line_count = 0
 
-def do_export
-    pos_categ_id = $row[&apos;id&apos;]
-    puts pos_categ_id
-    pos_tax_id = $row[&apos;tax_id&apos;]
-    puts pos_tax_id
-    ref_id = ExternalReferential.search([&apos;name&apos;, &apos;ilike&apos;, &apos;openbravopos&apos;])[0]
-    model_id = IrModel.search([&apos;model&apos;, &apos;=&apos;, &apos;product.product&apos;])[0]
-    map = ExternalMapping.find(:first, :domain =&gt; [[&apos;referential_id&apos;, &apos;=&apos;, ref_id], [&apos;model_id&apos;, &apos;=&apos;, model_id]])
-    last_export_date = map.last_export_date
-    if last_export_date
-        last_export_date = last_export_date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
-    end
-    puts &quot;last_export_date&quot;, last_export_date
-    product_ids = ProductProduct.get_modified_ids(last_export_date)
-    list = []
-    verif = []
-    errors = []
-    if product_ids and product_ids != []
-        product_ids.each do |pr|
-            product_attr = ProductProduct.read(pr[0], [&apos;categ_id&apos;, &apos;name&apos;, &apos;default_code&apos;, &apos;price&apos;, &apos;barcode&apos;, &apos;standard_price&apos;, &apos;list_price&apos;, &apos;magento_sku&apos;, &apos;x_magerp_special_price&apos;, &apos;type&apos;, &apos;product_type&apos;, &apos;sale_ok&apos;])
-            [&apos;categ_id&apos;].each do |key|
-                product_attr[key] = product_attr[key][1] # gives the name
-            end
-            product_attr[&apos;oe_id&apos;] = &quot;OE_PRODUCT_&quot; + pr[0].to_s
-            product_attr[&apos;modified_date&apos;] = pr[1]
-            product_attr[&apos;pos_categ_id&apos;] = pos_categ_id # solves strange bug...
-            product_attr[&apos;pos_tax_id&apos;] = pos_tax_id     # solves strange bug...
-            product_attr[&apos;name1&apos;] = product_attr[&apos;name&apos;]
-            product_attr[&apos;name&apos;] = product_attr[&apos;name&apos;].gsub(&#47;&quot;&#47;, &apos;\&quot;&apos;)
-            if not product_attr[&apos;barcode&apos;]
-                product_attr[&apos;barcode&apos;] = product_attr[&apos;magento_sku&apos;]
-            end
-            if product_attr[&apos;x_magerp_special_price&apos;] and product_attr[&apos;x_magerp_special_price&apos;] != 0.0
-                product_attr[&apos;list_price&apos;] = product_attr[&apos;x_magerp_special_price&apos;]
-            end
-            if not product_attr[&apos;sale_ok&apos;] or product_attr[&apos;product_type&apos;] == &apos;configurable&apos;
-                next
-            end
-            if product_attr[&apos;barcode&apos;] and not (product_attr[&apos;name&apos;] and verif.index(product_attr[&apos;name&apos;].downcase) or product_attr[&apos;default_code&apos;] and verif.index(product_attr[&apos;default_code&apos;].downcase) or product_attr[&apos;barcode&apos;] and verif.index(product_attr[&apos;barcode&apos;].downcase))
-                list += [product_attr]
-            else 
-                errors &lt;&lt; product_attr[&apos;default_code&apos;]
-            end
-            verif &lt;&lt; product_attr[&apos;name&apos;].downcase if product_attr[&apos;name&apos;]
-            verif &lt;&lt; product_attr[&apos;default_code&apos;].downcase if product_attr[&apos;default_code&apos;]
-            verif &lt;&lt; product_attr[&apos;barcode&apos;].downcase if product_attr[&apos;barcode&apos;]
-        end
-        #puts &quot;list&quot;, list
-        puts &quot;errors (in the erp)&quot;, errors
-        if list == []
-            puts &apos;Error, all modified products with the following ids have an empty barcode\n&apos; * 10
-            puts product_ids
-        else
-            first_line = list[0]
-            other_lines = list - [first_line]
-            $output &lt;&lt; first_line
-            other_lines
-        end
-    else # solves bug if there is no line
-        puts &apos;No products have been modified\n&apos; * 10
-        #$output &lt;&lt; {&quot;price&quot; =&gt; 0.0, &quot;name&quot; =&gt; &quot;Unknown&quot;, &quot;pos_categ_id&quot; =&gt; pos_categ_id, &quot;default_code&quot; =&gt; &quot;false&quot;, &quot;barcode&quot; =&gt; &quot;false&quot;, &quot;id&quot; =&gt; 0, &quot;modified_date&quot; =&gt; Time.new.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;), &quot;categ_id&quot; =&gt; &quot;All products&quot;, &quot;oe_id&quot; =&gt; 4, &quot;standard_price&quot; =&gt; 1.0, &quot;list_price&quot; =&gt; 1.0}
-    end
-end
+$last_order_id = false
 
-</body>
+def do_import
+
+  $line_count += 1
+  if $line_count &gt; 0
+
+    #order_exceptions = []
+    unknown_product = false
+
+    #######################
+    # Get product_id      #
+    #######################
+    product_ids = ProductProduct.search([[&apos;default_code&apos;, &apos;=&apos;, $row[&quot;reference&quot;]]])
+    if product_ids != []
+      product_id = product_ids[0]
+    else
+      #order_exceptions &lt;&lt; $excep_product_id
+      unknown_product = true
+      product_id = ProductProduct.search([[&apos;name&apos;, &apos;=&apos;, &apos;Unknown&apos;]])[0]
+      product_id = ProductProduct.create(:name =&gt; &apos;Unknown&apos;).id unless product_id
+    end
+
+    is_new_order = false
+    sale_order = SaleOrder.find(:first, :domain =&gt; [[&apos;name&apos;, &apos;=&apos;, &quot;IS_%09d&quot; % $row[&quot;ticketid&quot;]]], :fields =&gt; [&apos;name&apos;])
+    unless sale_order #no existing order for such line in OpenERP: so we will create a new one
+    
+      is_new_order = true
+      if $last_order_id #before creaing a new order, we will validate the last previous order
+        so = SaleOrder.read($last_order_id, [&apos;name&apos;, &apos;amount_total&apos;, &apos;create_date&apos;])
+        t0 = Time.new
+        SaleOrder.generate_payment_with_pay_code($row[&quot;payment&quot;], $partner_id, so[&apos;amount_total&apos;], so[&apos;name&apos;], so[&apos;name&apos;], so[&apos;create_date&apos;].to_s, true, {})
+        puts &quot;spent #{Time.now - t0} in generate_payment_with_pay_code&quot;
+        begin
+          t0 = Time.now
+          SaleOrder.oe_status($last_order_id)  #this may fail for several reasons
+          puts &quot;spent #{Time.now - t0} in oe_status&quot;
+          so = SaleOrder.read($last_order_id, [&apos;shipped&apos;, &apos;invoiced&apos;])
+          SaleOrder.write([$last_order_id], {:state =&gt; &apos;done&apos;, :shipped =&gt; true}) if so[&apos;shipped&apos;] and so[&apos;invoiced&apos;]
+          puts &quot;***************** Took #{Time.now - $last_import_time} to import last order #{$row[&quot;ticketid&quot;]}&quot; if $last_import_time
+          $last_import_time = Time.now
+        rescue
+        end
+      end
+
+      #######################
+      # Get partner        #
+      #######################
+      $partner_id = ResPartner.search([[&apos;name&apos;, &apos;=&apos;, &apos;Pos Customer&apos;]])[0]
+      $partner_id = ResPartner.create(:name =&gt; &apos;Pos Customer&apos;).id unless $partner_id
+
+      #######################
+      # Get adresses        #
+      #######################
+      address_id = ResPartnerAddress.search([[&apos;partner_id&apos;, &apos;=&apos;, $partner_id], [&apos;type&apos;, &apos;=&apos;, &apos;default&apos;]])[0]
+      address_id = ResPartnerAddress.create(:partner_id =&gt; $partner_id, :type =&gt; &apos;default&apos;, :name =&gt; &apos;Pos Customer&apos;).id unless address_id
+
+      #######################
+      # Create sale order   #
+      #######################
+      date_order = $row[&quot;datenew&quot;].year.to_s + &quot;&#47;&quot; + $row[&quot;datenew&quot;].month.to_s + &quot;&#47;&quot; + $row[&quot;datenew&quot;].day.to_s
+      sale_order = SaleOrder.new(:name =&gt; &quot;IS_%09d&quot; %$row[&quot;ticketid&quot;], :shop_id =&gt; $sale_shop_id, :order_policy =&gt; &apos;manual&apos;, 
+                                  :partner_shipping_id =&gt; address_id, :partner_invoice_id =&gt; address_id, 
+                                  :partner_order_id =&gt; address_id, :date_order =&gt; date_order, 
+                                  :ext_payment_method =&gt; $row[&quot;payment&quot;])
+    #:ir_model_data_id =&gt; [&apos;extref&#47;afterbuy&apos;, &quot;sale_order&#47;#{$row[&quot;ext_order_id&quot;]}&quot;]
+      sale_order.on_change(&apos;onchange_partner_id&apos;, :partner_id, $partner_id, $partner_id)
+      sale_order.partner_shipping_id = address_id
+      sale_order.partner_invoice_id = address_id
+      sale_order.save({}, false)
+      print &apos;SO&apos;, sale_order.id
+      $last_order_id = sale_order.id
+    end #unless sale_order
+
+    
+    #######################
+    # Create the lines    #
+    #######################
+    line = SaleOrderLine.search([[&apos;product_id&apos;, &apos;=&apos;, product_id], [&apos;order_id&apos;, &apos;=&apos;, sale_order.id]])[0]
+    if line and not unknown_product
+      line = SaleOrderLine.find(line, :fields=&gt; [&apos;product_uom_qty&apos;])
+      line.product_uom_qty += $row[&quot;UNITS&quot;]
+      line.save({}, false)
+    else
+      line = SaleOrderLine.new(:order_id=&gt;sale_order.id)
+      line.on_change(&apos;product_id_change&apos;, :product_id, product_id, 1, product_id, $row[&quot;UNITS&quot;], false, 0, false, &apos;&apos;, $partner_id)
+      line.name = &quot;unknown product #{$row[&quot;name&quot;]}&quot; if unknown_product
+      line.product_uom_qty = $row[&quot;UNITS&quot;]
+      line.price_unit = $row[&quot;PRICE&quot;]
+      line.product_uom = ProductProduct.read(product_id, [&apos;uom_id&apos;])[&apos;uom_id&apos;][0]
+      line.save({}, false)
+    end
+
+  end
+
+
+end</body>
 			<role>INIT_SCRIPT</role>
+		</script>
+		<script>
+			<title>Final Script</title>
+			<body>if $last_order_id
+	so = SaleOrder.find($last_order_id, :fields =&gt; [&apos;name&apos;, &apos;amount_total&apos;, &apos;create_date&apos;])
+	SaleOrder.generate_payment_with_pay_code($row[&quot;payment&quot;], so.partner_id.id, so.amount_total, so.name, so.name, so.create_date.to_s, true, {})
+	SaleOrder.oe_status($last_order_id)
+	so = SaleOrder.read($last_order_id, [&apos;invoiced&apos;, &apos;shipped&apos;])
+	if so[&apos;invoiced&apos;]
+		SaleOrder.write([$last_order_id], {:state =&gt; &apos;done&apos;, :shipped =&gt; true}) if so[&apos;shipped&apos;] and so[&apos;invoiced&apos;]
+	end
+end</body>
+			<role>DISPOSE_SCRIPT</role>
 		</script>
 	</scripts>
 	<rubyVersion>RUBY_1_8</rubyVersion>
 	<clearInputFields>N</clearInputFields>
 
 	<outputFields>
-		<outputField>
-			<name>categ_id</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>name</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>default_code</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>price</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>oe_id</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>modified_date</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>barcode</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>standard_price</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>list_price</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>pos_categ_id</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>name1</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>type</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
-		<outputField>
-			<name>pos_tax_id</name>
-			<type>2</type>
-			<update>N</update>
-		</outputField>
 	</outputFields>
 	<rubyVariables>
 	</rubyVariables>
@@ -659,118 +422,8 @@ end
 	<gemHome/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
+      <xloc>700</xloc>
       <yloc>150</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>output</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>850</xloc>
-      <yloc>10</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>status_is_ok</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Replace in string 2 2</send_true_to>
-<send_false_to>Replace in string 2</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>id_1</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>150</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>status_is_ok 2</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>output</send_true_to>
-<send_false_to>update</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>erro</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#</mask></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>850</xloc>
-      <yloc>90</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>update</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MySql</connection>
-    <execute_each_row>Y</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <sql>update PRODUCTS set code = &apos;?&apos;, name = &quot;?&quot;, pricebuy = &apos;?&apos;, pricesell = &apos;?&apos;, product_type = &apos;?&apos; where reference = &apos;?&apos;;
-</sql>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-       <argument><name>barcode</name></argument>
-       <argument><name>name</name></argument>
-       <argument><name>standard_price</name></argument>
-       <argument><name>list_price</name></argument>
-       <argument><name>type</name></argument>
-       <argument><name>default_code</name></argument>
-    </arguments>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>930</xloc>
-      <yloc>90</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

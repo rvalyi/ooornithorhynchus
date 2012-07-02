@@ -17,23 +17,23 @@
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<field><id>ID_BATCH</id><enabled>N</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>N</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>N</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>N</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>N</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>N</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>N</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>N</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>N</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>N</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>N</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>N</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>N</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>N</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
 <table/>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<field><id>ID_BATCH</id><enabled>N</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>N</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>N</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>N</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>N</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>N</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>N</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>N</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>N</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>N</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>N</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>N</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>N</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>N</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
 <channel-log-table><connection/>
 <schema/>
 <table/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<field><id>ID_BATCH</id><enabled>N</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>N</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>N</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>N</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>N</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>N</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>N</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>N</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>N</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>N</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>N</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
 <step-log-table><connection/>
 <schema/>
 <table/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<field><id>ID_BATCH</id><enabled>N</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>N</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>N</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>N</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>N</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>N</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>N</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>N</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>N</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>N</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>N</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
     </log>
     <maxdate>
       <connection/>
@@ -46,7 +46,7 @@
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
-    <feedback_shown>Y</feedback_shown>
+    <feedback_shown>N</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
@@ -70,13 +70,13 @@
   </notepads>
   <connection>
     <name>MySql</name>
-    <server>192.168.1.184</server>
+    <server>192.168.1.53</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>openbravopos</database>
     <port>3306</port>
     <username>posuser</username>
-    <password>PASSWORD</password>
+    <password>MYSQL_PASSWORD</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -101,7 +101,7 @@
     <database>openbravopos</database>
     <port>3306</port>
     <username>root</username>
-    <password>PASSWORD</password>
+    <password>MYSQL_PASSWORD</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -119,7 +119,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>exportproduct</to><enabled>Y</enabled> </hop>  <hop> <from>exportproduct</from><to>Database join 4</to><enabled>N</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2</from><to>Ruby Scripting 2</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting 2</from><to>create</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4</from><to>Database join 4 2</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4 2</from><to>status_is_ok</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>update</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>output</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2 2</from><to>Ruby Scripting</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>status_is_ok 2</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Table input</from><to>exportproduct</to><enabled>Y</enabled> </hop>  <hop> <from>exportproduct</from><to>Database join 4</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2</from><to>Ruby Scripting 2</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting 2</from><to>create</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4</from><to>Database join 4 2</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4 2</from><to>status_is_ok</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>update</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>output</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2 2</from><to>Ruby Scripting</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>status_is_ok 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Database join 4</name>
     <type>DBJoin</type>
@@ -289,7 +289,7 @@ end
 		</script>
 		<script>
 			<title>New Script 1</title>
-			<body>puts &apos;**************&apos; * 88, &apos;Errors between erp and pos&apos;
+			<body>puts &apos;**************&apos; * 10, &apos;Errors between erp and pos&apos;
 puts $list_errors</body>
 			<role>DISPOSE_SCRIPT</role>
 		</script>
@@ -508,15 +508,18 @@ values (&apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &quot;?&quot;, &apos;?&apos
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;midwestsupplies&quot;, :username =&gt; &apos;kettle&apos;, :password =&gt; &apos;PASSWORD&apos;})
+#old parameters
+#o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;&quot;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;, :log_level =&gt; 2})
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
 
 def do_export
+	puts &apos;SKU&apos; + &apos;       &apos; + &apos;Name&apos;
     pos_categ_id = $row[&apos;id&apos;]
-    puts pos_categ_id
+  #  puts pos_categ_id
     pos_tax_id = $row[&apos;tax_id&apos;]
-    puts pos_tax_id
+  #  puts pos_tax_id
     ref_id = ExternalReferential.search([&apos;name&apos;, &apos;ilike&apos;, &apos;openbravopos&apos;])[0]
     model_id = IrModel.search([&apos;model&apos;, &apos;=&apos;, &apos;product.product&apos;])[0]
     map = ExternalMapping.find(:first, :domain =&gt; [[&apos;referential_id&apos;, &apos;=&apos;, ref_id], [&apos;model_id&apos;, &apos;=&apos;, model_id]])
@@ -524,7 +527,7 @@ def do_export
     if last_export_date
         last_export_date = last_export_date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
     end
-    puts &quot;last_export_date&quot;, last_export_date
+    #puts &quot;last_export_date&quot;, last_export_date
     product_ids = ProductProduct.get_modified_ids(last_export_date)
     list = []
     verif = []
@@ -535,6 +538,7 @@ def do_export
             [&apos;categ_id&apos;].each do |key|
                 product_attr[key] = product_attr[key][1] # gives the name
             end
+		#	puts product_attr[&apos;default_code&apos;] + &apos;        &apos; + product_attr[&apos;name&apos;] + &apos;    &apos; + product_attr[&apos;price&apos;]
             product_attr[&apos;oe_id&apos;] = &quot;OE_PRODUCT_&quot; + pr[0].to_s
             product_attr[&apos;modified_date&apos;] = pr[1]
             product_attr[&apos;pos_categ_id&apos;] = pos_categ_id # solves strange bug...
@@ -562,7 +566,7 @@ def do_export
         #puts &quot;list&quot;, list
         puts &quot;errors (in the erp)&quot;, errors
         if list == []
-            puts &apos;Error, all modified products with the following ids have an empty barcode\n&apos; * 10
+            puts &apos;Error, all modified products with the following ids have an empty barcode\n&apos; * 1
             puts product_ids
         else
             first_line = list[0]
@@ -571,7 +575,7 @@ def do_export
             other_lines
         end
     else # solves bug if there is no line
-        puts &apos;No products have been modified\n&apos; * 10
+        puts &apos;No products have been modified&apos; * 1
         #$output &lt;&lt; {&quot;price&quot; =&gt; 0.0, &quot;name&quot; =&gt; &quot;Unknown&quot;, &quot;pos_categ_id&quot; =&gt; pos_categ_id, &quot;default_code&quot; =&gt; &quot;false&quot;, &quot;barcode&quot; =&gt; &quot;false&quot;, &quot;id&quot; =&gt; 0, &quot;modified_date&quot; =&gt; Time.new.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;), &quot;categ_id&quot; =&gt; &quot;All products&quot;, &quot;oe_id&quot; =&gt; 4, &quot;standard_price&quot; =&gt; 1.0, &quot;list_price&quot; =&gt; 1.0}
     end
 end
