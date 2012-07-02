@@ -37,8 +37,8 @@
     'init_xml': [],
     'update_xml': [
           'settings/external.referential.type.csv',
+          'settings/openbravopos1000/external.referential.version.csv',
           'settings/openbravopos1000/external.mapping.template.csv',
-	  'settings/openbravopos1000/external.referential.version.csv',
           'external_referentials_view.xml',
           'product_view.xml'
     ],
