@@ -40,7 +40,6 @@
           'settings/openbravopos1000/external.mapping.template.csv',
 	  'settings/openbravopos1000/external.referential.version.csv',
           'external_referentials_view.xml',
-          'sale_view.xml',
           'product_view.xml'
     ],
     'test': [],
