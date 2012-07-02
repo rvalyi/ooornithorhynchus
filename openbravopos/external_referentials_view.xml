@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="openbravopos_external_referential_form_view" model="ir.ui.view">
+            <field name="name">openbravopos.external.referential.form.view</field>
+            <field name="model">external.referential</field>
+            <field name="inherit_id" ref="base_external_referentials.external_referential_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="external_resource_name" position="after">
+                    <field name="last_import_date" />
+                    <field name="last_export_date" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
