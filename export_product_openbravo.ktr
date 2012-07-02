@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>exportproduct</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2011&#47;03&#47;31 17:12:38.022</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2011&#47;03&#47;31 17:12:38.022</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>MySql</name>
+    <server>192.168.1.184</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>openbravopos</database>
+    <port>3306</port>
+    <username>posuser</username>
+    <password>PASSWORD</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>rrr</name>
+    <server>192.168.1.50</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>openbravopos</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>PASSWORD</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Table input</from><to>exportproduct</to><enabled>Y</enabled> </hop>  <hop> <from>exportproduct</from><to>Database join 4</to><enabled>N</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2</from><to>Ruby Scripting 2</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting 2</from><to>create</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4</from><to>Database join 4 2</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4 2</from><to>status_is_ok</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>update</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>output</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2 2</from><to>Ruby Scripting</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>status_is_ok 2</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Database join 4</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MySql</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select id from PRODUCTS where reference = ? or name = ? or code = ? or id = ?;
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>default_code</name>
+        <type>-</type>
+      </field>
+      <field>
+        <name>name1</name>
+        <type>-</type>
+      </field>
+      <field>
+        <name>barcode</name>
+        <type>-</type>
+      </field>
+      <field>
+        <name>oe_id</name>
+        <type>-</type>
+      </field>
+    </parameter>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>260</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Database join 4 2</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MySql</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select id from PRODUCTS where name = ? or code = ?;
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>name1</name>
+        <type>-</type>
+      </field>
+      <field>
+        <name>default_code</name>
+        <type>-</type>
+      </field>
+    </parameter>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>330</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Replace in string 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>name</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>fghj</replace_string>
+        <replace_by_string>\\&quot;</replace_by_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>530</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Replace in string 2 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>name</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>hkj</replace_string>
+        <replace_by_string>\\&quot;</replace_by_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>530</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ruby Scripting</name>
+    <type>TypeExitRubyStep</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+	<scripts>
+		<script>
+			<title>Ruby Script</title>
+			<body># your script goes here 
+if  $row[&quot;id_1&quot;] == $row[&quot;id_2&quot;] or $row[&quot;id_2&quot;] == false or $row[&quot;id_2&quot;] == nil or $row[&quot;id_2&quot;] == &quot;&quot;
+	$row[&quot;erro&quot;] = 0
+#	puts &apos;ok&apos;, $row[&quot;default_code&quot;], $row[&quot;id_1&quot;]
+else
+	$row[&quot;erro&quot;] = 1
+#	puts &apos;error&apos;, $row[&quot;default_code&quot;], $row[&quot;id_1&quot;], $row[&quot;id_2&quot;]
+	$list_errors += [$row[&quot;default_code&quot;]]
+end
+
+[$row]</body>
+			<role>ROW_SCRIPT</role>
+		</script>
+		<script>
+			<title>New Script</title>
+			<body>$list_errors = []</body>
+			<role>INIT_SCRIPT</role>
+		</script>
+		<script>
+			<title>New Script 1</title>
+			<body>puts &apos;**************&apos; * 88, &apos;Errors between erp and pos&apos;
+puts $list_errors</body>
+			<role>DISPOSE_SCRIPT</role>
+		</script>
+	</scripts>
+	<rubyVersion>RUBY_1_8</rubyVersion>
+	<clearInputFields>N</clearInputFields>
+
+	<outputFields>
+		<outputField>
+			<name>erro</name>
+			<type>5</type>
+			<update>N</update>
+		</outputField>
+	</outputFields>
+	<rubyVariables>
+	</rubyVariables>
+	<infoSteps>
+	</infoSteps>
+	<targetSteps>
+	</targetSteps>
+	<gemHome/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>610</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ruby Scripting 2</name>
+    <type>TypeExitRubyStep</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+	<scripts>
+		<script>
+			<title>Ruby Script</title>
+			<body># your script goes here 
+if $row[&quot;default_code&quot;] and $row[&quot;default_code&quot;] != &quot;false&quot;
+[$row]
+else
+[]
+end</body>
+			<role>ROW_SCRIPT</role>
+		</script>
+	</scripts>
+	<rubyVersion>RUBY_1_8</rubyVersion>
+	<clearInputFields>N</clearInputFields>
+
+	<outputFields>
+	</outputFields>
+	<rubyVariables>
+	</rubyVariables>
+	<infoSteps>
+	</infoSteps>
+	<targetSteps>
+	</targetSteps>
+	<gemHome/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>610</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>erro</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>700</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MySql</connection>
+    <sql>select CATEGORIES.id as id, TAXCATEGORIES.id as tax_id from CATEGORIES, TAXCATEGORIES where CATEGORIES.name = &apos;New Products to Organize&apos; and TAXCATEGORIES.name = &apos;Brew TAX @&apos;;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>60</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unique rows</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <count_rows>N</count_rows>
+      <count_field/>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description/>
+    <fields>      <field>        <name>name</name>
+        <case_insensitive>N</case_insensitive>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>770</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>create</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MySql</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <sql>insert into PRODUCTS (id, reference, code, name, pricebuy, pricesell, category, taxcat, product_type) 
+values (&apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &quot;?&quot;, &apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &apos;?&apos;)</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>oe_id</name></argument>
+       <argument><name>default_code</name></argument>
+       <argument><name>barcode</name></argument>
+       <argument><name>name</name></argument>
+       <argument><name>standard_price</name></argument>
+       <argument><name>list_price</name></argument>
+       <argument><name>pos_categ_id</name></argument>
+       <argument><name>pos_tax_id</name></argument>
+       <argument><name>type</name></argument>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>700</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>exportproduct</name>
+    <type>TypeExitRubyStep</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+	<scripts>
+		<script>
+			<title>Ruby Script</title>
+			<body>do_export()
+</body>
+			<role>ROW_SCRIPT</role>
+		</script>
+		<script>
+			<title>New Script</title>
+			<body>require &quot;rubygems&quot;
+require &quot;ooor&quot;
+
+o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;midwestsupplies&quot;, :username =&gt; &apos;kettle&apos;, :password =&gt; &apos;PASSWORD&apos;})
+
+$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
+
+def do_export
+    pos_categ_id = $row[&apos;id&apos;]
+    puts pos_categ_id
+    pos_tax_id = $row[&apos;tax_id&apos;]
+    puts pos_tax_id
+    ref_id = ExternalReferential.search([&apos;name&apos;, &apos;ilike&apos;, &apos;openbravopos&apos;])[0]
+    model_id = IrModel.search([&apos;model&apos;, &apos;=&apos;, &apos;product.product&apos;])[0]
+    map = ExternalMapping.find(:first, :domain =&gt; [[&apos;referential_id&apos;, &apos;=&apos;, ref_id], [&apos;model_id&apos;, &apos;=&apos;, model_id]])
+    last_export_date = map.last_export_date
+    if last_export_date
+        last_export_date = last_export_date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
+    end
+    puts &quot;last_export_date&quot;, last_export_date
+    product_ids = ProductProduct.get_modified_ids(last_export_date)
+    list = []
+    verif = []
+    errors = []
+    if product_ids and product_ids != []
+        product_ids.each do |pr|
+            product_attr = ProductProduct.read(pr[0], [&apos;categ_id&apos;, &apos;name&apos;, &apos;default_code&apos;, &apos;price&apos;, &apos;barcode&apos;, &apos;standard_price&apos;, &apos;list_price&apos;, &apos;magento_sku&apos;, &apos;x_magerp_special_price&apos;, &apos;type&apos;, &apos;product_type&apos;, &apos;sale_ok&apos;])
+            [&apos;categ_id&apos;].each do |key|
+                product_attr[key] = product_attr[key][1] # gives the name
+            end
+            product_attr[&apos;oe_id&apos;] = &quot;OE_PRODUCT_&quot; + pr[0].to_s
+            product_attr[&apos;modified_date&apos;] = pr[1]
+            product_attr[&apos;pos_categ_id&apos;] = pos_categ_id # solves strange bug...
+            product_attr[&apos;pos_tax_id&apos;] = pos_tax_id     # solves strange bug...
+            product_attr[&apos;name1&apos;] = product_attr[&apos;name&apos;]
+            product_attr[&apos;name&apos;] = product_attr[&apos;name&apos;].gsub(&#47;&quot;&#47;, &apos;\&quot;&apos;)
+            if not product_attr[&apos;barcode&apos;]
+                product_attr[&apos;barcode&apos;] = product_attr[&apos;magento_sku&apos;]
+            end
+            if product_attr[&apos;x_magerp_special_price&apos;] and product_attr[&apos;x_magerp_special_price&apos;] != 0.0
+                product_attr[&apos;list_price&apos;] = product_attr[&apos;x_magerp_special_price&apos;]
+            end
+            if not product_attr[&apos;sale_ok&apos;] or product_attr[&apos;product_type&apos;] == &apos;configurable&apos;
+                next
+            end
+            if product_attr[&apos;barcode&apos;] and not (product_attr[&apos;name&apos;] and verif.index(product_attr[&apos;name&apos;].downcase) or product_attr[&apos;default_code&apos;] and verif.index(product_attr[&apos;default_code&apos;].downcase) or product_attr[&apos;barcode&apos;] and verif.index(product_attr[&apos;barcode&apos;].downcase))
+                list += [product_attr]
+            else 
+                errors &lt;&lt; product_attr[&apos;default_code&apos;]
+            end
+            verif &lt;&lt; product_attr[&apos;name&apos;].downcase if product_attr[&apos;name&apos;]
+            verif &lt;&lt; product_attr[&apos;default_code&apos;].downcase if product_attr[&apos;default_code&apos;]
+            verif &lt;&lt; product_attr[&apos;barcode&apos;].downcase if product_attr[&apos;barcode&apos;]
+        end
+        #puts &quot;list&quot;, list
+        puts &quot;errors (in the erp)&quot;, errors
+        if list == []
+            puts &apos;Error, all modified products with the following ids have an empty barcode\n&apos; * 10
+            puts product_ids
+        else
+            first_line = list[0]
+            other_lines = list - [first_line]
+            $output &lt;&lt; first_line
+            other_lines
+        end
+    else # solves bug if there is no line
+        puts &apos;No products have been modified\n&apos; * 10
+        #$output &lt;&lt; {&quot;price&quot; =&gt; 0.0, &quot;name&quot; =&gt; &quot;Unknown&quot;, &quot;pos_categ_id&quot; =&gt; pos_categ_id, &quot;default_code&quot; =&gt; &quot;false&quot;, &quot;barcode&quot; =&gt; &quot;false&quot;, &quot;id&quot; =&gt; 0, &quot;modified_date&quot; =&gt; Time.new.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;), &quot;categ_id&quot; =&gt; &quot;All products&quot;, &quot;oe_id&quot; =&gt; 4, &quot;standard_price&quot; =&gt; 1.0, &quot;list_price&quot; =&gt; 1.0}
+    end
+end
+
+</body>
+			<role>INIT_SCRIPT</role>
+		</script>
+	</scripts>
+	<rubyVersion>RUBY_1_8</rubyVersion>
+	<clearInputFields>N</clearInputFields>
+
+	<outputFields>
+		<outputField>
+			<name>categ_id</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>name</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>default_code</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>price</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>oe_id</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>modified_date</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>barcode</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>standard_price</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>list_price</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>pos_categ_id</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>name1</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>type</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+		<outputField>
+			<name>pos_tax_id</name>
+			<type>2</type>
+			<update>N</update>
+		</outputField>
+	</outputFields>
+	<rubyVariables>
+	</rubyVariables>
+	<infoSteps>
+	</infoSteps>
+	<targetSteps>
+	</targetSteps>
+	<gemHome/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>850</xloc>
+      <yloc>10</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>status_is_ok</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Replace in string 2 2</send_true_to>
+<send_false_to>Replace in string 2</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>id_1</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>420</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>status_is_ok 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>output</send_true_to>
+<send_false_to>update</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>erro</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>850</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>update</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MySql</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <sql>update PRODUCTS set code = &apos;?&apos;, name = &quot;?&quot;, pricebuy = &apos;?&apos;, pricesell = &apos;?&apos;, product_type = &apos;?&apos; where reference = &apos;?&apos;;
+</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>barcode</name></argument>
+       <argument><name>name</name></argument>
+       <argument><name>standard_price</name></argument>
+       <argument><name>list_price</name></argument>
+       <argument><name>type</name></argument>
+       <argument><name>default_code</name></argument>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>930</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>
