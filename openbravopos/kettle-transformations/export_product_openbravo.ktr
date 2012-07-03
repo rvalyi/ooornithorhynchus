@@ -144,9 +144,9 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>exportproduct</to><enabled>Y</enabled> </hop>  <hop> <from>exportproduct</from><to>Database join 4</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace in string 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2</from><to>Ruby Scripting 2</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting 2</from><to>create</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4</from><to>Database join 4 2</to><enabled>Y</enabled> </hop>  <hop> <from>Database join 4 2</from><to>status_is_ok</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>update</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>output</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string 2 2</from><to>Ruby Scripting</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>status_is_ok 2</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Table input</from><to>exportproduct</to><enabled>Y</enabled> </hop>  <hop> <from>exportproduct</from><to>DB join 4</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok</from><to>Replace 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace</from><to>Ruby Scripting 2</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting 2</from><to>create</to><enabled>Y</enabled> </hop>  <hop> <from>DB join 4</from><to>DB join 4 2</to><enabled>Y</enabled> </hop>  <hop> <from>DB join 4 2</from><to>status_is_ok</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>update</to><enabled>Y</enabled> </hop>  <hop> <from>status_is_ok 2</from><to>output</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Replace 2 2</from><to>Ruby Scripting</to><enabled>Y</enabled> </hop>  <hop> <from>Ruby Scripting</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>status_is_ok 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Database join 4</name>
+    <name>DB join 4</name>
     <type>DBJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -188,7 +188,7 @@
     </step>
 
   <step>
-    <name>Database join 4 2</name>
+    <name>DB join 4 2</name>
     <type>DBJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -222,7 +222,7 @@
     </step>
 
   <step>
-    <name>Replace in string 2</name>
+    <name>Replace</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -252,7 +252,7 @@
     </step>
 
   <step>
-    <name>Replace in string 2 2</name>
+    <name>Replace 2 2</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -533,8 +533,6 @@ values (&apos;?&apos;, &apos;?&apos;, &apos;?&apos;, &quot;?&quot;, &apos;?&apos
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-#old parameters
-#o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;&quot;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;, :log_level =&gt; 2})
 Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
@@ -722,8 +720,8 @@ end
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Replace in string 2 2</send_true_to>
-<send_false_to>Replace in string 2</send_false_to>
+<send_true_to>Replace 2 2</send_true_to>
+<send_false_to>Replace</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
