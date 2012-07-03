@@ -9,6 +9,31 @@
     <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
+        <parameter>
+            <name>oerp_db</name>
+            <default_value>oerp_db</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_host</name>
+            <default_value>oerp_host</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_port</name>
+            <default_value>oerp_port</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_pwd</name>
+            <default_value>oerp_pwd</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>oerp_user</name>
+            <default_value>oerp_user</default_value>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -76,7 +101,7 @@
     <database>openbravopos</database>
     <port>3306</port>
     <username>posuser</username>
-    <password>MYSQL_PASSWORD</password>
+    <password>Encrypted 2be98e29139f6bebb9b389d43e9bd9dfe</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -101,7 +126,7 @@
     <database>openbravopos</database>
     <port>3306</port>
     <username>root</username>
-    <password>MYSQL_PASSWORD</password>
+    <password>Encrypted 2be98e29139f6bebb9b389d43e9bd9dfe</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
