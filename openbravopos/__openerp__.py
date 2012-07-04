@@ -3,6 +3,7 @@
 #################################################################################
 #                                                                               #
 # Copyright (C) 2011 Vianney da Costa - Akretion                                #
+#               2012 Raphaël Valyi - Akretion
 #                                                                               #
 #This program is free software: you can redistribute it and/or modify           #
 #it under the terms of the GNU General Public License as published by           #
@@ -20,14 +21,14 @@
 
 
 {
-    'name': 'OpenBravo POS',
-    'version': '0.1',
-    'category': 'Generic Modules',
+    'name': 'ooornithorinchus: OpenBravo POS for OpenERP',
+    'version': '0.2',
+    'category': 'Sales Management',
     'description': """
     Integration of the Point of Sale OpenBravo POS
     """,
     'author': 'Akretion',
-    'complexity': "easy",
+    'complexity': "hard",
     'website': 'http://www.akretion.com',
     'depends': [
             'base_external_referentials',
