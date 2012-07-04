@@ -10,6 +10,31 @@
     <directory>&#47;</directory>
     <parameters>
         <parameter>
+            <name>obpos_db</name>
+            <default_value>obpos_db</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>obpos_host</name>
+            <default_value>obpos_host</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>obpos_port</name>
+            <default_value>obpos_port</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>obpos_pwd</name>
+            <default_value>obpos_pwd</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>obpos_user</name>
+            <default_value>obpos_user</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>oerp_db</name>
             <default_value>oerp_db</default_value>
             <description/>
@@ -95,13 +120,13 @@
   </notepads>
   <connection>
     <name>MySql</name>
-    <server>192.168.1.53</server>
+    <server>${obpos_host}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>openbravopos</database>
-    <port>3306</port>
-    <username>posuser</username>
-    <password>Encrypted 2be98e29139f6bebb9b389d43e9bd9dfe</password>
+    <database>${obpos_db}</database>
+    <port>${obpos_port}</port>
+    <username>${obpos_user}</username>
+    <password>${obpos_pwd}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -111,7 +136,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${obpos_port}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
