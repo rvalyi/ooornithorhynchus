@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>transfo_kyle_import_order</name>
+    <name>import_orders_openbravo</name>
     <description/>
     <extended_description/>
     <trans_version/>
