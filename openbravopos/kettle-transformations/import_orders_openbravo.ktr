@@ -101,7 +101,7 @@
     <database>openbravopos</database>
     <port>3306</port>
     <username>posuser</username>
-    <password>MYSQL_PASSWORD</password>
+    <password>Encrypted 2be98e29139f6bebb9b389d43e9bd9dfe</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -286,8 +286,6 @@ nil</body>
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
-#old parameters
-#o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;&quot;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
 Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
@@ -324,15 +322,11 @@ def do_import
       if $last_order_id #before creaing a new order, we will validate the last previous order
         so = SaleOrder.read($last_order_id, [&apos;name&apos;, &apos;amount_total&apos;, &apos;create_date&apos;])
         t0 = Time.new
-        SaleOrder.generate_payment_with_pay_code($row[&quot;payment&quot;], $partner_id, so[&apos;amount_total&apos;], so[&apos;name&apos;], so[&apos;name&apos;], so[&apos;create_date&apos;].to_s, true, {})
-        puts &quot;spent #{Time.now - t0} in generate_payment_with_pay_code&quot;
+        SaleOrder.pay_and_update_rpc($sal_shop_id, so.id, {}, {})
         begin
-          t0 = Time.now
-          SaleOrder.oe_status($last_order_id)  #this may fail for several reasons
-          puts &quot;spent #{Time.now - t0} in oe_status&quot;
           so = SaleOrder.read($last_order_id, [&apos;shipped&apos;, &apos;invoiced&apos;])
           SaleOrder.write([$last_order_id], {:state =&gt; &apos;done&apos;, :shipped =&gt; true}) if so[&apos;shipped&apos;] and so[&apos;invoiced&apos;]
-          puts &quot;***************** Took #{Time.now - $last_import_time} to import last order #{$row[&quot;ticketid&quot;]}&quot; if $last_import_time
+          $step.logDebug(&quot;***************** Took #{Time.now - $last_import_time} to import last order #{$row[&quot;ticketid&quot;]}&quot;) if $last_import_time
           $last_import_time = Time.now
         rescue
         end
@@ -354,16 +348,18 @@ def do_import
       # Create sale order   #
       #######################
       date_order = $row[&quot;datenew&quot;].year.to_s + &quot;&#47;&quot; + $row[&quot;datenew&quot;].month.to_s + &quot;&#47;&quot; + $row[&quot;datenew&quot;].day.to_s
+     
+      payment_method_id = PaymentMethod.seach([&apos;name&apos;, &apos;=&apos;, $row[&quot;payment&quot;]])[0]
+
       sale_order = SaleOrder.new(:name =&gt; &quot;IS_%09d&quot; %$row[&quot;ticketid&quot;], :shop_id =&gt; $sale_shop_id, :order_policy =&gt; &apos;manual&apos;, 
                                   :partner_shipping_id =&gt; address_id, :partner_invoice_id =&gt; address_id, 
-                                  :partner_order_id =&gt; address_id, :date_order =&gt; date_order, 
-                                  :ext_payment_method =&gt; $row[&quot;payment&quot;])
-    #:ir_model_data_id =&gt; [&apos;extref&#47;afterbuy&apos;, &quot;sale_order&#47;#{$row[&quot;ext_order_id&quot;]}&quot;]
+                                  :partner_order_id =&gt; address_id, :date_order =&gt; date_order,
+                                  :payment_method_id =&gt; payment_method_id)
       sale_order.on_change(&apos;onchange_partner_id&apos;, :partner_id, $partner_id, $partner_id)
       sale_order.partner_shipping_id = address_id
       sale_order.partner_invoice_id = address_id
       sale_order.save({}, false)
-      print &apos;SO&apos;, sale_order.id
+      $step.logMinimal(&quot;imported POS order #{sale_order.id}&quot;)
       $last_order_id = sale_order.id
     end #unless sale_order
 
@@ -396,8 +392,7 @@ end</body>
 			<title>Final Script</title>
 			<body>if $last_order_id
 	so = SaleOrder.find($last_order_id, :fields =&gt; [&apos;name&apos;, &apos;amount_total&apos;, &apos;create_date&apos;])
-	SaleOrder.generate_payment_with_pay_code($row[&quot;payment&quot;], so.partner_id.id, so.amount_total, so.name, so.name, so.create_date.to_s, true, {})
-	SaleOrder.oe_status($last_order_id)
+	SaleOrder.pay_and_update_rpc($sal_shop_id, so.id, {}, {})
 	so = SaleOrder.read($last_order_id, [&apos;invoiced&apos;, &apos;shipped&apos;])
 	if so[&apos;invoiced&apos;]
 		SaleOrder.write([$last_order_id], {:state =&gt; &apos;done&apos;, :shipped =&gt; true}) if so[&apos;shipped&apos;] and so[&apos;invoiced&apos;]
