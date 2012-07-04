@@ -193,22 +193,20 @@
 			<title>Ruby Script</title>
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
-#old parameter
-#o = Ooor.new({:url =&gt; &quot;http:&#47;&#47;localhost:8069&#47;xmlrpc&quot;, :database =&gt; &quot;&quot;, :username =&gt; &apos;&apos;, :password =&gt; &apos;&apos;})
-Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 $sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
 
 last_imported_order_id = SaleOrder.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;IS_&apos;]], 0, 1, &apos;desc&apos;)
 #last_imported_order_id = SaleOrder.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;IS_&apos;]]).sort.last
-puts last_imported_order_id
+$step.logMinimal &quot;OpenERP ID of last imported POS order #{last_imported_order_id}&quot;
+
 if last_imported_order_id != []
 	num = SaleOrder.find(last_imported_order_id[0]).name.split(&quot;_&quot;)[1].to_i
 else
 	num = 0
 end
-puts &quot;num&quot;, num
-
+$step.logMinimal &quot;importing since last POS order found #{num}&quot;
 {&quot;num&quot; =&gt; num}</body>
 			<role>ROW_SCRIPT</role>
 		</script>
