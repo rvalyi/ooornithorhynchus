@@ -59,6 +59,11 @@
             <default_value>oerp_user</default_value>
             <description/>
         </parameter>
+        <parameter>
+            <name>shop_name</name>
+            <default_value>obpos</default_value>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -218,9 +223,8 @@
 			<title>Ruby Script</title>
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
-
-Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
-$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
+Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;), :models =&gt; [&apos;sale.order&apos;]})
+sleep(1)
 
 last_imported_order_id = SaleOrder.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;IS_&apos;]], 0, 1, &apos;desc&apos;)
 #last_imported_order_id = SaleOrder.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;IS_&apos;]]).sort.last
@@ -311,9 +315,12 @@ nil</body>
 			<body>require &quot;rubygems&quot;
 require &quot;ooor&quot;
 
+sleep(1)
 Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
-$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
+$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;=&apos;, $step.get_variable(&apos;shop_name&apos;)]])[0] || 1
+$step.logMinimal &quot;using sale_shop_id #{$sale_shop_id}&quot;
+
 $line_count = 0
 
 $last_order_id = false
@@ -374,7 +381,7 @@ def do_import
       #######################
       date_order = $row[&quot;datenew&quot;].year.to_s + &quot;&#47;&quot; + $row[&quot;datenew&quot;].month.to_s + &quot;&#47;&quot; + $row[&quot;datenew&quot;].day.to_s
      
-      payment_method_id = PaymentMethod.seach([&apos;name&apos;, &apos;=&apos;, $row[&quot;payment&quot;]])[0]
+      payment_method_id = PaymentMethod.search([&apos;name&apos;, &apos;=&apos;, $row[&quot;payment&quot;]])[0]
 
       sale_order = SaleOrder.new(:name =&gt; &quot;IS_%09d&quot; %$row[&quot;ticketid&quot;], :shop_id =&gt; $sale_shop_id, :order_policy =&gt; &apos;manual&apos;, 
                                   :partner_shipping_id =&gt; address_id, :partner_invoice_id =&gt; address_id, 
