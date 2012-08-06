@@ -20,6 +20,8 @@
 from osv import osv
 from osv import fields
 
+from base_external_referentials.decorator import only_for_referential
+
 class external_mapping(osv.osv):
     _inherit = 'external.mapping'
     
@@ -30,7 +32,8 @@ class external_mapping(osv.osv):
 
 external_mapping()
 
-class external_referential(magerp_osv.magerp_osv):
+
+class external_referential(osv.osv):
     _inherit = "external.referential"
 
     @only_for_referential('openbravopos')
