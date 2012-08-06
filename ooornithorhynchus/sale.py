@@ -27,12 +27,7 @@ class sale_order(osv.osv):
         shop = self.pool.get('sale.shop').browse(cr, uid, shop_id)
         referential = shop.referential_id
         external_session = ExternalSession(referential, shop)
+        order = self.browse(cr, uid, order_id)
+        resource = {'payment': {'amount_paid': order.amount_total}}
         return self.paid_and_update(cr, uid, external_session, order_id, resource, context)
-
-    def _get_payment_information(self, cr, uid, external_session, order_id, resource, context=None):
-        vals = super(sale_order, self)._get_payment_information(cr, uid, external_session, order_id, resource, context=context)
-        if external_session.referential_id.name == "OpenbravoPOS":
-            vals['paid'] = True
-            vals['amount'] = self.read(cr, uid, [order_id], ['amount_total'])[0]['amount_total']
-        return vals
 
