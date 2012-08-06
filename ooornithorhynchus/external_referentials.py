@@ -30,4 +30,11 @@ class external_mapping(osv.osv):
 
 external_mapping()
 
+class external_referential(magerp_osv.magerp_osv):
+    _inherit = "external.referential"
+
+    @only_for_referential('openbravopos')
+    def external_connection(self, cr, uid, id, debug=False, logger=False, context=None):
+        return None
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
