@@ -20,6 +20,7 @@
 
 from osv import osv
 from osv import fields
+from base_external_referentials.external_osv import ExternalSession
 
 class product_product(osv.osv):
     _inherit = "product.product"
