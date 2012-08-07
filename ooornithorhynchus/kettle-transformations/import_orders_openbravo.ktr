@@ -318,7 +318,7 @@ require &quot;ooor&quot;
 sleep(1)
 Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
-$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;=&apos;, $step.get_variable(&apos;shop_name&apos;)]])[0] || 1
+$sale_shop_id = ($step.get_variable(&apos;shop_name&apos;) &amp;&amp; SaleShop.search([[&apos;name&apos;, &apos;=&apos;, $step.get_variable(&apos;shop_name&apos;)]])[0]) || 1
 $step.logMinimal &quot;using sale_shop_id #{$sale_shop_id}&quot;
 
 $line_count = 0
@@ -354,7 +354,17 @@ def do_import
       if $last_order_id #before creaing a new order, we will validate the last previous order
         so = SaleOrder.read($last_order_id, [&apos;name&apos;, &apos;amount_total&apos;, &apos;create_date&apos;])
         t0 = Time.new
-        SaleOrder.pay_and_update_rpc($sal_shop_id, so.id, {}, {})
+        begin
+          SaleOrder.pay_and_update_rpc($sale_shop_id, $last_order_id, {}, {})
+        rescue
+          sleep(1)
+          begin
+            SaleOrder.pay_and_update_rpc($sale_shop_id, $last_order_id, {}, {})
+          rescue
+            sleep(1)
+            SaleOrder.pay_and_update_rpc($sale_shop_id, $last_order_id, {}, {})
+          end
+        end
         begin
           so = SaleOrder.read($last_order_id, [&apos;shipped&apos;, &apos;invoiced&apos;])
           SaleOrder.write([$last_order_id], {:state =&gt; &apos;done&apos;, :shipped =&gt; true}) if so[&apos;shipped&apos;] and so[&apos;invoiced&apos;]
