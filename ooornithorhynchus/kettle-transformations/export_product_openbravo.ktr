@@ -560,7 +560,8 @@ require &quot;ooor&quot;
 
 Ooor.new({:url =&gt; &quot;http:&#47;&#47;#{$step.get_variable(&apos;oerp_host&apos;)}:#{$step.get_variable(&apos;oerp_port&apos;)}&#47;xmlrpc&quot;, :database =&gt; $step.get_variable(&apos;oerp_db&apos;), :username =&gt; $step.get_variable(&apos;oerp_user&apos;), :password =&gt; $step.get_variable(&apos;oerp_pwd&apos;)})
 
-$sale_shop_id = SaleShop.search([[&apos;name&apos;, &apos;ilike&apos;, &apos;kyle&apos;]])[0] || 1
+$sale_shop_id = ($step.get_variable(&apos;shop_name&apos;) &amp;&amp; SaleShop.search([[&apos;name&apos;, &apos;=&apos;, $step.get_variable(&apos;shop_name&apos;)]])[0]) || 1
+$step.logMinimal &quot;using sale_shop_id #{$sale_shop_id}&quot;
 
 def do_export
 	puts &apos;SKU&apos; + &apos;       &apos; + &apos;Name&apos;
@@ -576,7 +577,7 @@ def do_export
         last_export_date = last_export_date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
     end
     #puts &quot;last_export_date&quot;, last_export_date
-    product_ids = ProductProduct.get_modified_ids(last_export_date)
+    product_ids = ProductProduct.get_ids_and_update_date_rpc($sale_shop_id, false, last_exported_date)[0]
     list = []
     verif = []
     errors = []

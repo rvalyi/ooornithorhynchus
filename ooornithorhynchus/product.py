@@ -28,6 +28,12 @@ class product_product(osv.osv):
         'barcode':fields.char('Barcode', size=64),
     }
 
-product_product()
+    def get_ids_and_update_date_rpc(self, cr, uid, shop_id, ids=None, last_exported_date=None, context=None):
+        shop = self.pool.get('sale.shop').browse(cr, uid, shop_id)
+        referential = shop.referential_id
+        external_session = ExternalSession(referential, shop)
+        return self.get_ids_and_update_date(cr, uid, external_session, ids, last_exported_date, context)
+
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
