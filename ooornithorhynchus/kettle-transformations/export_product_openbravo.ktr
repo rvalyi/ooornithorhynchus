@@ -577,7 +577,7 @@ def do_export
         last_export_date = last_export_date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
     end
     #puts &quot;last_export_date&quot;, last_export_date
-    product_ids = ProductProduct.get_ids_and_update_date_rpc($sale_shop_id, false, last_export_date)[0]
+    product_ids = ProductProduct.get_modified_ids(last_export_date)
     list = []
     verif = []
     errors = []
