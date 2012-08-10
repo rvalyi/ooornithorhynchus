@@ -31,9 +31,8 @@
     'complexity': "hard",
     'website': 'http://www.akretion.com',
     'depends': [
-            'base_external_referentials',
+            'base_sale_multichannels',
             'kettle_connector',
-            'product'
     ],
     'init_xml': [],
     'update_xml': [
