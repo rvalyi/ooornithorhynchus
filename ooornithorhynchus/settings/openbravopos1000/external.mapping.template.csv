@@ -1,2 +1,2 @@
 "id","extra_name","version_id:id","model_id:id","external_list_method","external_get_method","external_update_method","external_create_method","external_delete_method","external_search_method","external_done_method","key_for_external_id","external_resource_name"
-"openbravo1000_pos_product",,"openbravopos.openbravopos1000","product.model_product_product",,,,,,,"reference",,
+"openbravo1000_pos_product",,"openbravopos1000","product.model_product_product",,,,,,,"reference",,
