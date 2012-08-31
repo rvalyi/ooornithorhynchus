@@ -353,6 +353,7 @@ def do_import
       is_new_order = true
       if $last_order_id #before creaing a new order, we will validate the last previous order
         so = SaleOrder.read($last_order_id, [&apos;name&apos;, &apos;amount_total&apos;, &apos;create_date&apos;])
+        sleep(3)
         t0 = Time.new
         begin
           SaleOrder.pay_and_update_rpc($sale_shop_id, $last_order_id, {}, {})
@@ -421,6 +422,7 @@ def do_import
       line.product_uom_qty = $row[&quot;UNITS&quot;]
       line.price_unit = $row[&quot;PRICE&quot;]
       line.product_uom = ProductProduct.read(product_id, [&apos;uom_id&apos;])[&apos;uom_id&apos;][0]
+      sleep(2)
       line.save({}, false)
     end
 
