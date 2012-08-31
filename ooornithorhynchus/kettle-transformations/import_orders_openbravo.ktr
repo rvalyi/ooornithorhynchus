@@ -367,6 +367,7 @@ def do_import
           end
         end
         begin
+          sleep(1)
           so = SaleOrder.read($last_order_id, [&apos;shipped&apos;, &apos;invoiced&apos;])
           SaleOrder.write([$last_order_id], {:state =&gt; &apos;done&apos;, :shipped =&gt; true}) if so[&apos;shipped&apos;] and so[&apos;invoiced&apos;]
           $step.logDebug(&quot;***************** Took #{Time.now - $last_import_time} to import last order #{$row[&quot;ticketid&quot;]}&quot;) if $last_import_time
@@ -401,6 +402,7 @@ def do_import
       sale_order.on_change(&apos;onchange_partner_id&apos;, :partner_id, $partner_id, $partner_id)
       sale_order.partner_shipping_id = address_id
       sale_order.partner_invoice_id = address_id
+      sleep(1)
       sale_order.save({}, false)
       $step.logMinimal(&quot;imported POS order #{sale_order.id}&quot;)
       $last_order_id = sale_order.id
@@ -422,7 +424,7 @@ def do_import
       line.product_uom_qty = $row[&quot;UNITS&quot;]
       line.price_unit = $row[&quot;PRICE&quot;]
       line.product_uom = ProductProduct.read(product_id, [&apos;uom_id&apos;])[&apos;uom_id&apos;][0]
-      sleep(2)
+      sleep(1)
       line.save({}, false)
     end
 
