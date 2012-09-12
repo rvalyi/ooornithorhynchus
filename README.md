@@ -16,5 +16,5 @@
 </table>
 
 
-No, this not a joke, it has been used in production importing dozens of thousands of Openbravo POS orders into an OpenERP for more than a year...
+No, this is not a joke, it has been used in production importing dozens of thousands of Openbravo POS orders into an OpenERP for more than a year...
 
